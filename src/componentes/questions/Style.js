@@ -31,7 +31,7 @@ background-color: #e4e4e4ff;
 export const Li = styled.li`
 width: 75%;
 background-color: #102432;
-margin-top: 2rem;
+margin-top: 1rem;
 padding: 1rem;
 display: flex;
 font-size: 0.9rem;
@@ -73,7 +73,7 @@ export const ListaPerguntas = styled.ul`
     flex-direction: column;
     align-items: center;
     overflow-y: auto;
-    max-height: 71vh;
+    max-height: 72.5vh;
     padding: 0;
     
     /* Estiliza a barra de rolagem (opcional) */

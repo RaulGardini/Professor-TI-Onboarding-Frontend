@@ -1,6 +1,11 @@
 import { useState } from "react";
 import ProfessorTIService from "../../Service/ProfessorTIService";
-import { ChatContainer } from "./Style";
+import { 
+    ChatContainer,
+    ChatMensager,
+    MensageContainer,
+    Form
+ } from "./Style";
 
 function Chat() {
     const [question, setQuestion] = useState("");
@@ -38,20 +43,9 @@ function Chat() {
 
     return (
         <ChatContainer>
-            <div style={{ 
-                display: "flex", 
-                flexDirection: "column", 
-                height: "85vh",
-                padding: "20px"
-            }}>               
+            <ChatMensager>               
                 {/* Área de mensagens */}
-                <div style={{
-                    flex: 1,
-                    overflowY: "auto",
-                    marginBottom: "1rem",
-                    padding: " 2rem 10rem 0 10rem",
-                    border: "1px solid #ddd",
-                }}>
+                <MensageContainer>
                     {messages.map((msg, index) => (
                         <div
                             key={index}
@@ -79,10 +73,10 @@ function Chat() {
                             Pensando...
                         </div>
                     )}
-                </div>
+                </MensageContainer>
 
                 {/* Formulário de envio */}
-                <form onSubmit={handleSendMessage} style={{ display: "flex", gap: "10px" }}>
+                <Form onSubmit={handleSendMessage}>
                     <input
                         type="text"
                         value={question}
@@ -112,8 +106,8 @@ function Chat() {
                     >
                         Enviar
                     </button>
-                </form>
-            </div>
+                </Form>
+            </ChatMensager>
         </ChatContainer>
     );
 }
