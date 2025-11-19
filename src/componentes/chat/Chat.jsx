@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProfessorTIService from "../../Service/ProfessorTIService";
 import { 
     ChatContainer,
@@ -7,27 +7,24 @@ import {
     Form
  } from "./Style";
 
-function Chat() {
+function Chat({ perguntaSelecionada }) {
     const [question, setQuestion] = useState("");
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    const handleSendMessage = async (e) => {
-        e.preventDefault();
-        
-        if (!question.trim()) return;
+    useEffect(() => {
+        if (perguntaSelecionada) {
+            enviarPergunta(perguntaSelecionada);
+        }
+    }, [perguntaSelecionada]);
 
-        // Adiciona a pergunta do usuário
-        const userMessage = { role: "user", content: question };
+    const enviarPergunta = async (pergunta) => {
+        const userMessage = { role: "user", content: pergunta };
         setMessages(prev => [...prev, userMessage]);
-        setQuestion("");
         setLoading(true);
 
         try {
-            // Chama a API
-            const answer = await ProfessorTIService.askQuestion(question);
-            
-            // Adiciona a resposta do professor
+            const answer = await ProfessorTIService.askQuestion(pergunta);
             const botMessage = { role: "assistant", content: answer };
             setMessages(prev => [...prev, botMessage]);
         } catch (error) {
@@ -41,10 +38,16 @@ function Chat() {
         }
     };
 
+    const handleSendMessage = async () => {
+        if (!question.trim()) return;
+        
+        await enviarPergunta(question);
+        setQuestion("");
+    };
+
     return (
         <ChatContainer>
             <ChatMensager>               
-                {/* Área de mensagens */}
                 <MensageContainer>
                     {messages.map((msg, index) => (
                         <div
@@ -75,7 +78,6 @@ function Chat() {
                     )}
                 </MensageContainer>
 
-                {/* Formulário de envio */}
                 <Form onSubmit={handleSendMessage}>
                     <input
                         type="text"
@@ -92,7 +94,7 @@ function Chat() {
                         }}
                     />
                     <button
-                        type="submit"
+                        onClick={handleSendMessage}
                         disabled={loading || !question.trim()}
                         style={{
                             padding: "10px 20px",

@@ -9,7 +9,7 @@ import {
     ListaPerguntas
 } from "./Style";
 
-function Questions() {
+function Questions({ onPerguntaSelecionada }) {
     const perguntas = [
         { id: 1, titulo: "VPN:", pergunta: "Como ativar a VPN" },
         { id: 2, titulo: "Time:", pergunta: "Qual é o time da TI" },
@@ -31,7 +31,12 @@ function Questions() {
         { id: 18, titulo: "Templates:", pergunta: "Onde encontro templates (PPT, documentos, logotipos)?" },
     ];
 
+    const handlePerguntar = (pergunta) => {
+        onPerguntaSelecionada(pergunta);
+    };
+
     const cores = ['#f0ddd2ff', '#EDD4C6', '#EFCCB9', '#F1BD9F', '#F2BC9E', '#F4B089', '#F6A97D', '#F7A170', '#F79C68', '#F89F66', '#FAA467', '#FAA967'];
+    
     return (
         <>
             <QuestionsContainer>
@@ -63,7 +68,9 @@ function Questions() {
                                 <p>{pergunta.pergunta}</p>
                             </QuestionText>
                             <div>
-                                <ButtonPerguntar>Perguntar</ButtonPerguntar>
+                                <ButtonPerguntar onClick={() => handlePerguntar(pergunta.pergunta)}>
+                                    Perguntar
+                                </ButtonPerguntar>
                             </div>
                         </Li>
                     ))}

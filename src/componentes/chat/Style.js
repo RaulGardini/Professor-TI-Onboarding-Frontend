@@ -20,7 +20,6 @@ flex: 1;
 overflow-y: auto;
 margin-bottom: 1rem;
 padding: 2rem 10rem 0 10rem;
-border: 1px solid #ddd;
 `;
 
 export const Form = styled.form`

@@ -73,7 +73,7 @@ export const ListaPerguntas = styled.ul`
     flex-direction: column;
     align-items: center;
     overflow-y: auto;
-    max-height: 72.5vh;
+    max-height: 70.5vh;
     padding: 0;
     
     /* Estiliza a barra de rolagem (opcional) */
