@@ -5,9 +5,9 @@ Interface web do projeto Professor TI Onboarding, construída em React.
 ## Como Rodar o Projeto
 1. Pré-requisitos
 
-Node.js (versão 16+)
+    Node.js (versão 16+)
 
-npm ou yarn
+    npm ou yarn
 
 2. Clonar o repositório
 git clone https://github.com/seu-usuario/seu-projeto-frontend.git
