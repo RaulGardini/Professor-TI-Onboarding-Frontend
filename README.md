@@ -43,7 +43,7 @@ React (Create React App)
 
 JavaScript
 
-Axios (ou fetch)
+Fetch
 
 HTML / CSS
 
